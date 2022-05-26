@@ -9,9 +9,7 @@ public:
 
     void push(int val)
     {
-        if (stack.size() == 0)
-            min.push_back(val);
-        else if (getMin() >= val)
+        if (stack.size() == 0 || getMin() >= val)
             min.push_back(val);
         stack.push_back(val);
     }
@@ -19,9 +17,7 @@ public:
     void pop()
     {
         if (top() == getMin())
-        {
             min.pop_back();
-        }
         stack.pop_back();
     }
 
