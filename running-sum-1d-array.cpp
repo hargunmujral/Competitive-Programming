@@ -3,13 +3,13 @@ class Solution
 public:
     vector<int> runningSum(vector<int> &nums)
     {
-        vector<int> out;
+        vector<int> out(nums.size());
         int sum = 0;
 
-        for (const auto &i : nums)
+        for (int i = 0; i < nums.size(); i++)
         {
-            out.push_back(i + sum);
-            sum += i;
+            out.at(i) = (nums.at(i) + sum);
+            sum += nums.at(i);
         }
         return out;
     }
