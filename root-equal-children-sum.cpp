@@ -1,7 +1,15 @@
 class Solution
 {
 public:
-    bool checkTree(TreeNode *root)
+
+    // For a tree with only three nodes, root, root->left and root->right
+    bool checkTreeSmall(TreeNode *root)
+    {
+        return (root->val == root->left->val + root->right->val);
+    }
+
+    // For a tree of any size
+    bool checkTreeBig(TreeNode *root)
     {
         int out = 0;
         traversal(root, out);
