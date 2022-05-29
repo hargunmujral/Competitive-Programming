@@ -2,40 +2,77 @@
 #include <algorithm>
 #include <set>
 
-class Solution {
+class Solution
+{
 public:
-     vector<vector<int>> threeSum(vector<int>& nums) {
-        if(nums.size() < 3) return {};
-        sort(nums.begin(), nums.end());
-        set<vector<int>> out;
-        for(int i = 0; i < nums.size() - 2; i++){
-            int start = i+1;
-            int end = nums.size() - 1;
-            while(start < end){
-                if(nums.at(start)+ nums.at(i)+ nums.at(end)==0){
-                    if(i != end){
-                         if(out.find({nums.at(start), nums.at(i), nums.at(end)})==out.end())
-                            out.insert({nums.at(start), nums.at(i), nums.at(end)});
-                        
-                     }
-                    start++;
-                    end--;
-                }
-                else if(nums.at(start)+ nums.at(i)+ nums.at(end)>0){
-                     end--;
-                } else{
-                     start++;
+    vector<vector<int>> threeSum(vector<int> &nums)
+    {
+        vector<vector<int>> out;
+        for (int i = 0; i < nums.size(); i++)
+        {
+            sort(nums.begin(), nums.end());
+            int front = i + 1;
+            int back = nums.size() - 1;
+            int target = -nums.at(i);
+            while (front < back)
+            {
+                int sum = nums.at(front) + nums.at(back);
+                if (sum > target)
+                    back--;
+                else if (sum < target)
+                    front++;
+                else
+                {
+                    vector<int> three = {nums.at(i), nums.at(front), nums.at(back)};
+                    out.push_back(three);
+
+                    while (front < back && nums.at(front) == three.at(1))
+                        front++;
+                    while (front < back && nums.at(back) == three.at(2))
+                        back--;
                 }
             }
-
+            while (i + 1 < nums.size() && nums.at(i) == nums.at(i + 1))
+                i++;
         }
-         vector<vector<int>> v;
-         for(const auto& i: out){
-             v.push_back(i);
-         }
-         return v;
+        return out;
     }
 };
+
+// class Solution {
+// public:
+//      vector<vector<int>> threeSum(vector<int>& nums) {
+//         if(nums.size() < 3) return {};
+//         sort(nums.begin(), nums.end());
+//         set<vector<int>> out;
+//         for(int i = 0; i < nums.size() - 2; i++){
+//             int start = i+1;
+//             int end = nums.size() - 1;
+//             while(start < end){
+//                 if(nums.at(start)+ nums.at(i)+ nums.at(end)==0){
+//                     if(i != end){
+//                          if(out.find({nums.at(start), nums.at(i), nums.at(end)})==out.end())
+//                             out.insert({nums.at(start), nums.at(i), nums.at(end)});
+                        
+//                      }
+//                     start++;
+//                     end--;
+//                 }
+//                 else if(nums.at(start)+ nums.at(i)+ nums.at(end)>0){
+//                      end--;
+//                 } else{
+//                      start++;
+//                 }
+//             }
+
+//         }
+//          vector<vector<int>> v;
+//          for(const auto& i: out){
+//              v.push_back(i);
+//          }
+//          return v;
+//     }
+// };
   
     
     
