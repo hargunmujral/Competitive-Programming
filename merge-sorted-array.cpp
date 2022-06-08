@@ -8,4 +8,21 @@ public:
         auto c = find(nums1.begin(), nums1.end(), 0);
         nums1.erase(c, c + nums2.size());
     }
-};
+
+    // optimized solution
+    void mergeOptimized(vector<int> &nums1, int m, vector<int> &nums2, int n)
+    {
+        while (n > 0)
+        {
+            if (m > 0 && nums1[m - 1] >= nums2[n - 1])
+            {
+                nums1[m + n - 1] = nums1[m - 1];
+                m--;
+            }
+            else
+            {
+                nums1[m + n - 1] = nums2[n - 1];
+                n--;
+            }
+        }
+    };
