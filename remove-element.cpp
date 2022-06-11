@@ -5,7 +5,7 @@ public:
     {
         for (int i = 0; i < nums.size(); i++)
             if (nums[i] == val)
-                nums.erase(nums.begin() + i);
-        return nums;
+                nums.erase(nums.begin() + i--);
+        return nums.size();
     }
 };
