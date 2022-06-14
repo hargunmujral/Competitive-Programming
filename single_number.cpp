@@ -27,4 +27,24 @@ public:
         }
         return nums.back();
     }
+    // Another implementation
+    int singleNumber(vector<int> &nums)
+    {
+        unordered_set<int> set(nums.begin(), nums.end());
+        int sumSet = 0;
+        int sumNums = 0;
+        for (const auto &i : set)
+            sumSet += i;
+        for (const auto &i : nums)
+            sumNums += i;
+        return -(sumNums - 2 * sumSet);
+    }
+    // Bitwise method
+    int singleNumber(vector<int> &nums)
+    {
+        int out = 0;
+        for (const auto &i : nums)
+            out ^= i;
+        return out;
+    }
 };
