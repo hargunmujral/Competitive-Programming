@@ -13,4 +13,10 @@ public:
         }
         return (n == i);
     }
+
+    // more optimized solution
+    bool hasAlternatingBitsOptimized(int n)
+    {
+        return ((n >> 1) & n) == 0 && ((n >> 2) & n) == n >> 2;
+    }
 };
