@@ -14,4 +14,7 @@ public:
         }
         return ans;
     }
+    // There is also a binary search solution. But the 
+    // binary search solution is not as efficient as the
+    // bit manipulation solution.
 };
