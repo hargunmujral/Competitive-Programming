@@ -12,4 +12,15 @@ public:
         }
         return (char)tsum - ssum;
     }
+    char findTheDifferenceBitManip(string s, string t)
+    {
+
+        char c = t.back();
+        for (int i = 0; i < s.size(); i++)
+        {
+            c ^= s[i];
+            c ^= t[i];
+        }
+        return c;
+    }
 };
