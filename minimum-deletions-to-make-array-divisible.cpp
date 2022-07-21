@@ -10,12 +10,8 @@ public:
     }
     int minOperations(vector<int> &nums, vector<int> &numsDivide)
     {
-        // int gcd = numsDivide[0];
-        // for(int i = 1; i < numsDivide.size(); i++){
-        //     gcd =  (gcd % numsDivide[i] == 0) ? gcd : gcd % numsDivide[i];
-        // }
+
         int gcd = ogcd(numsDivide);
-        cout << gcd;
         sort(nums.begin(), nums.end());
         int count = 0;
         for (const auto &n : nums)
