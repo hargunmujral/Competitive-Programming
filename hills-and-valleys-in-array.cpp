@@ -21,4 +21,20 @@ public:
         }
         return count;
     }
+    // added a more optimal solution
+    int countHillValleyOptimized(vector<int> &nums)
+    {
+        int count = 0;
+        for (int i = 1, j = 0; i < nums.size() - 1; i++)
+        {
+            if ((nums[i] > nums[j] && nums[i] > nums[i + 1]) ||
+                (nums[i] < nums[j] && nums[i] < nums[i + 1]))
+            {
+                count++;
+                j = i;
+            }
+        }
+        return count;
+    }
+    
 };
