@@ -32,4 +32,22 @@ public:
         if(root->left == nullptr && root->right == nullptr) return false;
         return hasChild(root->left, child) || hasChild(root->right, child);
     }
+
+    TreeNode *lowestCommonAncestorOptimized(TreeNode *root, TreeNode *p, TreeNode *q)
+    {
+        while (root)
+        {
+            if (root->val > p->val && root->val > q->val)
+                root = root->left;
+            else if (root->val < p->val && root->val < q->val)
+                root = root->right;
+            else
+                return root;
+        }
+        return root;
+    }
+    TreeNode *lowestCommonAncestor(TreeNode *root, TreeNode *p, TreeNode *q)
+    {
+        return (root->val > p->val && root->val > q->val) ? lowestCommonAncestor(root->left, p, q) : ((root->val < p->val && root->val < q->val) ? lowestCommonAncestor(root->right, p, q) : root);
+    }
 };
