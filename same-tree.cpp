@@ -14,12 +14,6 @@ class Solution
 public:
     bool isSameTree(TreeNode *p, TreeNode *q)
     {
-        if ((!p && q) || (p && !q))
-            return false;
-        if (!p || !q)
-            return true;
-        if (p->val != q->val)
-            return false;
-        return isSameTree(p->left, q->left) && isSameTree(p->right, q->right);
+        return !p && !q ? true : !p && q || p && !q ? false : p->val != q->val ? false : isSameTree(q->left, p->left) && isSameTree(q->right, p->right);
     }
 };
