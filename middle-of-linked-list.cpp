@@ -28,7 +28,7 @@ public:
     }
 
     // Optimized Solution:
-    ListNodeO *middleNodeOptimized(ListNode *head)
+    ListNode *middleNodeOptimized(ListNode *head)
     {
         if (head == nullptr)
             return head;
@@ -41,6 +41,13 @@ public:
         }
         return slow;
     }
+
+    ListNode *middleNode3(ListNode *head)
+    {
+        ListNode *fast = head;
+        ListNode *slow = head;
+        while (fast->next && fast->next->next)
+            fast = fast->next->next, slow = slow->next;
+        return fast->next == nullptr ? slow : slow->next;
+    }
 };
-
-
