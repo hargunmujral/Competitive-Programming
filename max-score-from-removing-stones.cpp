@@ -6,8 +6,6 @@ public:
         int mm = max(max(a, b), c);
         int mn = min(min(a, b), c);
         int md = a + b + c - mm - mn;
-        if (mm >= mn + md)
-            return mn + md;
-        return max(mm, mm + (mn + md - mm) / 2);
+        return mm >= mn + md ? mn + md : max(mm, mm + (mn + md - mm) / 2);
     }
 };
