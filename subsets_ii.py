@@ -1,29 +1,30 @@
 class Solution(object):
+
     def subsetsWithDup(self, nums):
         """
         :type nums: List[int]
         :rtype: List[List[int]]
         """
-        subsets = [set()]
-        subset_size = 1
-        start_index = 0 
-        for session in range(len(nums)):
-            end_index = len(subsets) 
-            for j in range(start_index, end_index):
-                for k in range(len(nums)):
-                    if k not in subsets[j]:
-                        new_set = subsets[j].copy()
-                        new_set.add(k)
-                        if new_set not in subsets:
-                            subsets.append(new_set) 
-            start_index = end_index
+
+        nums = sorted(nums)
         res = []
-        for subset in subsets:
-            to_add = [nums[i] for i in subset]
-            append = True
-            for arr in res:
-                if sorted(arr) == sorted(to_add):
-                    append = False
-            if append:
-                res.append(to_add)
+
+        def backtrack(i, subset):
+            # print(i)
+            if i == len(nums):
+                res.append(subset)
+                return
+            
+            # with new element
+            new_subset = [num for num in subset]
+            new_subset.append(nums[i])
+            backtrack(i+1, new_subset)
+
+            # skipping duplicates
+            while(i + 1 < len(nums) and nums[i] == nums[i+1]):
+                i += 1
+
+            # without new element 
+            backtrack(i+1, subset)
+        backtrack(0, [])
         return res
